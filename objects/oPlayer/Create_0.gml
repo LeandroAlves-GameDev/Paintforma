@@ -22,6 +22,7 @@ velh = 0;
 velv = 0;
 velv_max = 4;
 velh_max = 2;
+velh_run = 4;
 grav = 0.3;
 
 power_up_tinta = false;
@@ -33,9 +34,15 @@ power_up_tinta = false;
 
 
 //criando nosso time de coyote jump para melhorar a vida do jogador
-coyote_timer = 20;
+coyote_timer = 6;
 //dando um valor provisorio
 coyote_timer_atual = coyote_timer;
+
+
+//criando variaveis para o sistema de buffer do pulo 
+buffer_jump_timer = 6;
+buffer_jump_timer_atual = 0;
+
 
 //Criando uma variavel para aplicar dano ao player
 levo_dano = false;
@@ -88,8 +95,12 @@ pega_input = function()
     right = keyboard_check(ord("D")) || keyboard_check(vk_right);
     left = keyboard_check(ord("A")) || keyboard_check(vk_left);
     jump = keyboard_check_pressed(vk_space);
+    //criando uma tecla de corrida para nosso jogo
+    run = keyboard_check(vk_shift);
+    
+    
     //criando uma melhoria no pulo
-    jump_r = keyboard_check_released(vk_space);
+    //jump_r = keyboard_check_released(vk_space);
     //chamando nosso ativa debug dentro do nosso sistema de inputs
     //ao apertar o tab ele rodará nosso ativa debug
     ativando_debug = keyboard_check_pressed(vk_tab);
@@ -98,16 +109,59 @@ pega_input = function()
     tinta = keyboard_check_pressed(vk_control);
 }
 
+//criando um metodo de corrida
+modo_corrida = function()
+{
+    //criando uma if para ativar o modo corrida
+    if(run)
+    {
+        //se eu apertei o botão de run ou seja shift
+        //minha velh_max será a minha velh_run
+        velh_max = velh_run;
+    }
+    else 
+    { 
+        //se eu não estou apertando então minha velocidade será a velh_max normal 
+        velh = velh_max;
+    }
+}
+
 //criando o metodo do coyote_jump
 coyote_jump = function()
 {
+    //chamando o metodo de checar o chão
+    checa_chao();
     //vendo se não estou no chão
     if(!chao)
     {
         coyote_timer_atual--;
     }
+    else 
+    {
+        //se eu toquei o chão eu reseto meu timer
+        coyote_timer_atual = coyote_timer;	
+    }
 }
 
+//criando o metodo para ser nosso buffer pulo
+buffer_jump = function()
+{
+    //chamando o metodo do checa chao
+    checa_chao();
+    pega_input();
+    //se eu estou no ar então eu devo ganhar valor
+    if(!chao && jump)
+    {
+        //se eu nao estou tocando no chão e apertei jump logo eu fico igual o buffer_jump_timer
+        buffer_jump_timer_atual = buffer_jump_timer;
+        
+    }
+    if(!chao) 
+    {
+    	//toda vez que eu tocar no chão eu reseto 
+        buffer_jump_timer_atual--;
+    }
+}
 
 //Cria ndo um sistema de movimentos para o player
 //criando um metodo para rodar a movimentação do player
@@ -139,7 +193,7 @@ move_player = function()
         //ou seja ele vai arrendodar algum valor quebrado
         
         //Criando o pulo do player
-    	if(jump)
+    	if(jump || buffer_jump_timer_atual)
         {
             //se o resultado for senao ou seja se meu chão for igual a false
             //então meu velv vai ser igual a menos vel ou seja ao apertar espaço eu pulo e vou para cima 
@@ -148,6 +202,7 @@ move_player = function()
             velv = -velv_max
             //se eu apertei o botão de jump então ele roda o efeito do som de pulo
             audio_play_sound(snd_jump,1, 0)
+            buffer_jump_timer_atual = 0;
         }
         
     }
@@ -317,7 +372,7 @@ troca_estado = function(_estado = estado_parado, _lista_sprites = [spr_player_id
 //metodo estado parado
 estado_parado = function()
 {
-    velv = 0
+    if(buffer_jump_timer_atual == 0) velv = 0
     velh = 0
     //resetando as variaveis
     //chamando move_player no estado parado
@@ -332,7 +387,7 @@ estado_parado = function()
         //chamando o metodo troca estado e passando os parametros dentro dele
         troca_estado(estado_movendo,[spr_player_acelera, spr_player_correndo])
     }
-    if(jump)
+    if(jump || buffer_jump_timer_atual)
     {
         //chamando o metodo de troca estado e informando qual sprite deve ser usada
         troca_estado(estado_pulando, [spr_player_prepara_pulo, spr_player_pulocima])
@@ -437,6 +492,21 @@ estado_pulando = function()
         //velv = 0;
     //}
     
+    //rodando nosso if do coyote jump
+    if(coyote_timer_atual && jump)
+    {
+        //se eu estou dentro do timer do coyote jump e tentei pular 
+        //então eu posso pular
+        velv = -velv_max
+        
+        //resentando meu coyote timer
+        coyote_timer_atual = 0;
+        
+        var cria_efeito = instance_create_layer(x, y, "Player", oParticulas_puloinicio)
+        //rodando nosso efeito de mola
+        efeito_mola(.1, 1.3);
+    }
+    
     
     if(velv < 0)
     {
@@ -455,11 +525,11 @@ estado_pulando = function()
         }
         
         ////se eu apertei espaço e soltei o botão então eu paro de subir
-        if(jump_r)
-        {
-            //eu corto minha velv pela metade
-            velv *= 0.5;
-        }
+        //if(jump_r)
+        //{
+            ////eu corto minha velv pela metade
+            //velv *= 0.5;
+        //}
     }
     else
     {

@@ -22,5 +22,5 @@ desenha_efeito_brilho();
 //draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, true)
 
 //desenhando o debug da velv 
-//draw_text(x, y - 30, alpha_brilho);
+draw_text(x, y - 30, buffer_jump_timer_atual);
 //draw_text(x + 50, y - 30, y);

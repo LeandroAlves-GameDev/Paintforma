@@ -19,6 +19,11 @@ bloqueia_passagem();
 //chamando nosso metodo coyote jump 
 coyote_jump();
 
+//chamando o metodo de buffer no step
+buffer_jump();
+
+modo_corrida();
+
 //rodando um debug de cor 
 //if(keyboard_check_pressed(ord("C")))
 //{
