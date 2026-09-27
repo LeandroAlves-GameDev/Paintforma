@@ -7,7 +7,6 @@ estados = "Fechada";
 //dando uma velocidade para nossa porta
 velv = 0;
 velv_max = 4;
-velv_max = 4;
 
 //Criando a maquina de stados da porta
 estado_porta = function()
