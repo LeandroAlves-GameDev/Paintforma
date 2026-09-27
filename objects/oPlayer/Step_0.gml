@@ -16,6 +16,8 @@ retorna_efeito_brilho();
 
 bloqueia_passagem();
 
+//chamando nosso metodo coyote jump 
+coyote_jump();
 
 //rodando um debug de cor 
 //if(keyboard_check_pressed(ord("C")))

@@ -26,6 +26,17 @@ grav = 0.3;
 
 power_up_tinta = false;
 
+
+//criando um sistema de pulos duplos para nosso jogo
+//qtd_jump = 2;
+//qtd_jump_atual = qtd_jump;
+
+
+//criando nosso time de coyote jump para melhorar a vida do jogador
+coyote_timer = 20;
+//dando um valor provisorio
+coyote_timer_atual = coyote_timer;
+
 //Criando uma variavel para aplicar dano ao player
 levo_dano = false;
 
@@ -77,7 +88,8 @@ pega_input = function()
     right = keyboard_check(ord("D")) || keyboard_check(vk_right);
     left = keyboard_check(ord("A")) || keyboard_check(vk_left);
     jump = keyboard_check_pressed(vk_space);
-    
+    //criando uma melhoria no pulo
+    jump_r = keyboard_check_released(vk_space);
     //chamando nosso ativa debug dentro do nosso sistema de inputs
     //ao apertar o tab ele rodará nosso ativa debug
     ativando_debug = keyboard_check_pressed(vk_tab);
@@ -85,6 +97,17 @@ pega_input = function()
     //criando uma variavel para entrar na tinta
     tinta = keyboard_check_pressed(vk_control);
 }
+
+//criando o metodo do coyote_jump
+coyote_jump = function()
+{
+    //vendo se não estou no chão
+    if(!chao)
+    {
+        coyote_timer_atual--;
+    }
+}
+
 
 //Cria ndo um sistema de movimentos para o player
 //criando um metodo para rodar a movimentação do player
@@ -395,6 +418,17 @@ estado_movendo = function()
 //criando o metodo para o estado pulando 
 estado_pulando = function()
 {
+    ////criando um metodo static para refrescar a cabeça
+    //static inicio_pulo = true; 
+    ////rodando um if para ver o nosso pulo 
+    //if(inicio_pulo)
+    //{
+        //qtd_jump_atual--;
+        //
+        ////entrei no estado do pulo
+        //inicio_pulo = false;
+    //}
+    //
     move_player();
     //chamando o metodo troca sprite com a sprite que desejamos ver
     //se minha velv for menor que 0 ou seja estou pulando
@@ -420,7 +454,12 @@ estado_pulando = function()
             //colisoes[2] = oParede;
         }
         
-        
+        ////se eu apertei espaço e soltei o botão então eu paro de subir
+        if(jump_r)
+        {
+            //eu corto minha velv pela metade
+            velv *= 0.5;
+        }
     }
     else
     {
@@ -442,10 +481,26 @@ estado_pulando = function()
         }
         
     }
-    
+    //
+    ////criando um if para vermos se temos a possibilidade de pular de novo
+    //if(jump && qtd_jump_atual > 0)
+    //{
+        ////se não ou seja se eu estiver em queda ele mudará para a sprite de queda
+        //lista_sprites = [spr_player_pulo_para_queda, spr_player_queda]
+        //transicao_sprite()
+        //velv = -velv_max
+        //qtd_jump_atual--;
+    //}
+    //
+    //
     //ele vai verificar se estou colisão com o chão
     if(chao)
     {
+        ////informando que meu inicio do pulo e true
+        //inicio_pulo = true;
+        ////resetando tambem a quantidade pulo
+        //qtd_jump_atual = qtd_jump;
+        
         //se eu colidi com o chão então eu mudo meu estado para parado e rodo a animação de transição
         //[spr_player_pouso, spr_player_idle]
         troca_estado(estado_parado, [spr_player_pouso, spr_player_idle]);
