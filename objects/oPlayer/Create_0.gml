@@ -23,9 +23,10 @@ velv = 0;
 velv_max = 4;
 velh_max = 2;
 velh_run = 4;
+velh_padrao = velh_max;
 grav = 0.3;
 
-power_up_tinta = false;
+power_up_tinta = global.power_up_tinta;
 
 
 //criando um sistema de pulos duplos para nosso jogo
@@ -122,7 +123,7 @@ modo_corrida = function()
     else 
     { 
         //se eu não estou apertando então minha velocidade será a velh_max normal 
-        velh = velh_max;
+        velh_max = velh_padrao;
     }
 }
 
@@ -463,10 +464,12 @@ estado_movendo = function()
     //se eu colidi com o objeto espinho 
     if(place_meeting(x, y, oEspinho))
     {
+        
         //então eu entro no estado de dano
         estado = estado_dano;
         //se eu levei dano eu rodo o som de dano
         audio_play_sound(snd_hurt, 1, 0)
+        audio_stop_all();
     }
 }
 
@@ -610,6 +613,7 @@ estado_dano = function()
         //se minha image_index ou seja o index que estou atualmente for maior ou igual
         //a meu image_number ou seja numero de imagens menos uma delas
         cria_transicao_inicia(room)
+        audio_stop_all();
         //então eu chamo o metodo de transição e recomeço a room
         //se eu estou com chaves e morr, então eu perco elas
         global.chaves = 0;

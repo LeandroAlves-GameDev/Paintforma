@@ -32,7 +32,7 @@ if(volta == false)
 }
 else
 {
-    speed += 0.1
+    speed = clamp(speed + 0.1, 0, 8);
     var _player = instance_place(x, y, oPlayer)
     //criando uma forma de destruir o efeito
     if(_player)
@@ -57,20 +57,22 @@ else
         //a tela vai tremer levemente com base nos valores passados do random range
         oScreenshake.treme = random_range(1, 4.2);
         
+        instance_destroy();
+        
         //o maximo de opacidade será de 1 ou seja iremos começar com 100 e vai diminuir 90, 80, 70
-        image_alpha = clamp(image_alpha - 0.2, 0, 1);
+        //image_alpha = clamp(image_alpha - 0.2, 0, 1);
         //show_debug_message(image_alpha)
         //ao atingir zero
-        anim++;
+        //anim++;
         //vou ganhar anim ou seja tempo de animação
         //se meu imagem alpha for menor que zero então ele destroi o objeto ou se meu anim for maior
         //que meu anim_max ele destroi meu objeto
-        if(image_alpha <= 0 || anim >= anim_max)
-        {
-            //eu vou destruir o objeto
-            instance_destroy()
-            //resetando o anim
-            anim = 0;
-        }
+        //if(image_alpha <= 0 || anim >= anim_max)
+        //{
+            ////eu vou destruir o objeto
+            //instance_destroy()
+            ////resetando o anim
+            //anim = 0;
+        //}
     }
 }

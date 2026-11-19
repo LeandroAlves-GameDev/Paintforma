@@ -49,6 +49,7 @@ if(keyboard_check_pressed(ord("R")))
     cria_transicao_inicia(room);
     //se eu resetei a room então eu zero as chaves
     global.chaves = 0;
+    audio_stop_all();
 }
 
 //if(keyboard_check_pressed(ord("U")))
@@ -56,7 +57,7 @@ if(keyboard_check_pressed(ord("R")))
     //cria_transicao_inicia(rm_modelo)
 //}
 
-if (room == rm_menu) // Substitua rm_menu pelo nome exato da sua room de menu
+if (room == rm_menu)
 {
     // Zera a velocidade para ele ficar parado na tela
     velh = 0;

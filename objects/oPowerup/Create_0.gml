@@ -1,6 +1,13 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+//Destruindo o power up para caso eu já esteja com ele 
+if(global.power_up_tinta)
+{
+    instance_destroy();
+}
+
+
 //definindo um alvo
 alvo = noone;
 tempo_sumir = 0;
@@ -48,6 +55,9 @@ fui_pego = function()
         oPlayer.estado_coletapowerup();
         explode();
         oPlayer.power_up_tinta = true;
+        //informando que a variavel global power up e true
+        global.power_up_tinta = true;
+        other.power_up_tinta = true;
     }
 }
 

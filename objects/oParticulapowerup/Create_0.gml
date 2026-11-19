@@ -8,5 +8,5 @@ alvo = noone;
 volta = false;
 
 //criando uma outra forma de destruir o efeito caso ele passe pelo player
-anim = 0;
-anim_max = 30;
+//anim = 0;
+//anim_max = 30;

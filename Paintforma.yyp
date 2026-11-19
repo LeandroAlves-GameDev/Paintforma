@@ -102,6 +102,7 @@
     {"id":{"name":"rm_tutorial_4","path":"rooms/rm_tutorial_4/rm_tutorial_4.yy",},},
     {"id":{"name":"rm_tutorial_5","path":"rooms/rm_tutorial_5/rm_tutorial_5.yy",},},
     {"id":{"name":"scr_efeito_brilho","path":"scripts/scr_efeito_brilho/scr_efeito_brilho.yy",},},
+    {"id":{"name":"scr_globais","path":"scripts/scr_globais/scr_globais.yy",},},
     {"id":{"name":"scr_screenshake","path":"scripts/scr_screenshake/scr_screenshake.yy",},},
     {"id":{"name":"scr_squash_stretch","path":"scripts/scr_squash_stretch/scr_squash_stretch.yy",},},
     {"id":{"name":"scr_transicao","path":"scripts/scr_transicao/scr_transicao.yy",},},
@@ -169,6 +170,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_tutorial_1","path":"rooms/rm_tutorial_1/rm_tutorial_1.yy",},},
+    {"roomId":{"name":"rm_fase_1","path":"rooms/rm_fase_1/rm_fase_1.yy",},},
     {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_fase_4","path":"rooms/rm_fase_4/rm_fase_4.yy",},},
     {"roomId":{"name":"rm_tutorial_5","path":"rooms/rm_tutorial_5/rm_tutorial_5.yy",},},
@@ -178,7 +180,6 @@
     {"roomId":{"name":"rm_tutorial_2","path":"rooms/rm_tutorial_2/rm_tutorial_2.yy",},},
     {"roomId":{"name":"rm_tutorial_3","path":"rooms/rm_tutorial_3/rm_tutorial_3.yy",},},
     {"roomId":{"name":"rm_modelo","path":"rooms/rm_modelo/rm_modelo.yy",},},
-    {"roomId":{"name":"rm_fase_1","path":"rooms/rm_fase_1/rm_fase_1.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

@@ -3,8 +3,8 @@
   "%Name":"sh_muda_cor",
   "name":"sh_muda_cor",
   "parent":{
-    "name":"Shaders",
-    "path":"folders/Shaders.yy",
+    "name":"Efeitos",
+    "path":"folders/Efeitos.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",
