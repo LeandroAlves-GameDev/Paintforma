@@ -96,6 +96,7 @@
     {"id":{"name":"rm_fase_4","path":"rooms/rm_fase_4/rm_fase_4.yy",},},
     {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"id":{"name":"rm_modelo","path":"rooms/rm_modelo/rm_modelo.yy",},},
+    {"id":{"name":"rm_mundo","path":"rooms/rm_mundo/rm_mundo.yy",},},
     {"id":{"name":"rm_tutorial_1","path":"rooms/rm_tutorial_1/rm_tutorial_1.yy",},},
     {"id":{"name":"rm_tutorial_2","path":"rooms/rm_tutorial_2/rm_tutorial_2.yy",},},
     {"id":{"name":"rm_tutorial_3","path":"rooms/rm_tutorial_3/rm_tutorial_3.yy",},},
@@ -169,6 +170,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"rm_mundo","path":"rooms/rm_mundo/rm_mundo.yy",},},
     {"roomId":{"name":"rm_tutorial_1","path":"rooms/rm_tutorial_1/rm_tutorial_1.yy",},},
     {"roomId":{"name":"rm_fase_1","path":"rooms/rm_fase_1/rm_fase_1.yy",},},
     {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
